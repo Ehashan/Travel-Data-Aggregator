@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Data Aggregator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blob"></div>
+    <div class="background-blob-2"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Travel Data Aggregator</h1>
+            <p>Explore the world's data in one place.</p>
+        </header>
+
+        <section class="search-section">
+            <input type="text" id="countryInput" placeholder="Enter Country Name (e.g., Japan)" autocomplete="off">
+            <button id="searchBtn">Search</button>
+        </section>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>    
+        </div>
+
+        <div id="error-message" class="hidden error-box"></div>
+
+        <section id="resultsSection" class="results-grid hidden">
+            <!-- Card will be injected here -->
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
