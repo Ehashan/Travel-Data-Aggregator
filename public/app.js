@@ -95,7 +95,7 @@ async function handleSearch() {
         loading.classList.add('hidden');
     }
 }
-
+//display results in the card
 function displayResult(data) {
     resultsSection.classList.remove('hidden');
     const card = document.createElement('div');
