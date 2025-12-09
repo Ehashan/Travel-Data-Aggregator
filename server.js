@@ -12,13 +12,22 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public')); // Serve static files from 'public' directory
 
-// Database Connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.error('MongoDB Connection Error:', err));
+// Database Connection - MongoDB Atlas
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('✅ MongoDB Atlas Connected Successfully'))
+    .catch(err => {
+        console.error('❌ MongoDB Atlas Connection Error:', err.message);
+        process.exit(1);
+    });
+
+// Connection event handlers
+mongoose.connection.on('disconnected', () => {
+    console.log('⚠️  MongoDB Atlas Disconnected');
+});
+
+mongoose.connection.on('error', (err) => {
+    console.error('❌ MongoDB Atlas Error:', err.message);
+});
 
 // Schema Definition
 const travelRecordSchema = new mongoose.Schema({
