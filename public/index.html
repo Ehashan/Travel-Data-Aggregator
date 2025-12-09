@@ -3,38 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Data Aggregator</title>
+    <title>Travel Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
-    <div class="background-blob"></div>
-    <div class="background-blob-2"></div>
     
-    <div class="container">
-        <header>
-            <h1>Travel Data Aggregator</h1>
-            <p>Explore the world's data in one place.</p>
-        </header>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🌍 TravelDash</h2>
+            </div>
+            
+            <div class="search-box">
+                <label for="countryInput" style="color: #94a3b8; font-size: 0.9rem;">Find Destination</label>
+                <input type="text" id="countryInput" placeholder="e.g. Japan" autocomplete="off">
+                <button id="searchBtn">Explore</button>
+            </div>
 
-        <section class="search-section">
-            <input type="text" id="countryInput" placeholder="Enter Country Name (e.g., Japan)" autocomplete="off">
-            <button id="searchBtn">Search</button>
-        </section>
+            <div id="recent-searches" style="margin-top: auto;">
+                <!-- Could add recent searches here later -->
+            </div>
+        </aside>
 
-        <div id="loading" class="hidden">
-            <div class="spinner"></div>    
-        </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>    
+            </div>
 
-        <div id="error-message" class="hidden error-box"></div>
+            <div id="error-message" class="hidden" style="color: #f87171; background: rgba(248, 113, 113, 0.1); padding: 1rem; border-radius: 12px;"></div>
 
-        <section id="resultsSection" class="results-grid hidden">
-            <!-- Card will be injected here -->
-        </section>
+            <!-- Initial State / Results -->
+            <div id="resultsSection" class="hidden">
+                <header class="header-section">
+                    <h1 id="countryName">Country Name</h1>
+                    <p id="regionName">Region</p>
+                </header>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Capital</span>
+                        <span class="stat-value" id="capital">N/A</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Population</span>
+                        <span class="stat-value" id="population">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Currency</span>
+                        <span class="stat-value" id="currency">N/A</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Local Time</span>
+                        <span class="stat-value" id="localTime">--:--</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Weather</span>
+                        <span class="stat-value" id="weatherTemp">0°C</span>
+                        <span class="stat-label" id="weatherDesc" style="font-size: 0.8rem;">Clear Sky</span>
+                    </div>
+                </div>
+
+                <!-- Map Section -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Location</h3>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <!-- Attractions Section (Mock) -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Top Attractions</h3>
+                    <div id="attractions" class="stats-grid">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome State -->
+            <div id="welcomeState" style="text-align: center; margin-top: 100px;">
+                <h1>Ready to explore?</h1>
+                <p style="color: #94a3b8;">Search for a country to view details.</p>
+            </div>
+
+        </main>
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="app.js"></script>
 </body>
 </html>
